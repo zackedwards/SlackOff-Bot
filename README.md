@@ -7,4 +7,4 @@ Team member: GitHub ID
 3. Grace Miguel: gracemiguel
 4. Viviane Farnung: vfarnung
 
-(DESIGN.md)
+(./DESIGN.md)
