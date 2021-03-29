@@ -33,7 +33,8 @@ Subflows:
 [4] After enjoying the distraction the user will go back to work!
 Alternate Flows:
 [A3] The user can reject the distraction and continue to work, though they risk working too hard and burning out, making them less efficient in the long term. 
-Design Sketches 
+# Design Sketches 
+![http](img/flowchart.png)
 
 # Storyboard: 
 General Use case displaying several options including the option to distract someone else
