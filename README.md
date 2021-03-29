@@ -6,3 +6,5 @@ Team member: GitHub ID
 2. Will Escamilla: willescamilla
 3. Grace Miguel: gracemiguel
 4. Viviane Farnung: vfarnung
+
+(DESIGN.md)
