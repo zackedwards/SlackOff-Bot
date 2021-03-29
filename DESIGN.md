@@ -39,7 +39,9 @@ Alternate Flows:
 # Storyboard: 
 General Use case displaying several options including the option to distract someone else
 ![http](img/general_use_case1.png)
+
 The result of distracting someone else:
+
 ![http](img/general_use_case2.png)
 
 
