@@ -23,3 +23,11 @@ Why this is worth solving: To alleviate the pain of being overworked, helps them
 
 Design: Monitoring messages of #general or a specific channel, then it is triggered by "Please give me a joke", or "Please give me advice" and it will return a message.
 If individuals say those keywords over a specified limit within a certain timespan, a message will be output to that user giving them different de-stress methods and says, "you need a break, try one of these methods to chill out."
+
+# SlackBot Tutorials 
+
+* I'm currently trying to do this one
+https://medium.com/alex-attia-blog/build-a-first-simple-slack-bot-with-python-5392ef359835
+
+* This one is probably closer to what we'll be doing but it's more complex so I wanted to start small
+https://hackernoon.com/a-guide-to-building-a-multi-featured-slackbot-with-python-73ea5394acc 
