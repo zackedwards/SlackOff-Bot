@@ -1,3 +1,8 @@
+"""
+Authors: Will Escamilla, Zack Edwards, Grace Miguel, Viviane Farnung
+
+This is the main code for our slack bot
+"""
 import os
 from slack_bolt import App
 
@@ -9,7 +14,9 @@ app = App(
 
 # Listens to incoming messages that contain "hello"
 
-
+"""
+This function returns a default message for various inputs
+"""
 @app.message("!distract me")
 def default_message(message, say):
     # say() sends a message to the channel where the event was triggered
@@ -79,17 +86,20 @@ def default_message(message, say):
         }
     )
 
-
+"""
+This function returns a joke when requested
+"""
 @ app.action("wants_joke")
 def joke_requested(body, ack, say):
     # Acknowledge the action
+    reply=f"*Okay <@{body['user']['id']}>, here's your joke:* _poopie poopie poop head_"
     ack()
     say(
         {
             "attachments": [
                 {
                     "color": "#f2c744",
-                    "text": f"*Okay <@{body['user']['id']}>, here's your joke:* _poopie poopie poop head_"
+                    "text": reply
                 }
             ]
         }
