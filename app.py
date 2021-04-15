@@ -1,5 +1,6 @@
 import os
 from slack_bolt import App
+from slack_bolt.oauth.internals import get_or_create_default_installation_store
 
 # Initializes your app with your bot token and signing secret
 app = App(
@@ -80,6 +81,16 @@ def default_message(message, say):
     )
 
 
+@app.message("stress")
+def stress_message(message, say):
+    say(
+        "What up"
+    )
+
+# @app.message("!distract web")
+# @app.message("!distract quote")
+
+
 @ app.action("wants_joke")
 def joke_requested(body, ack, say):
     # Acknowledge the action
@@ -96,6 +107,9 @@ def joke_requested(body, ack, say):
     )
 
 
+# @ app.action("wants_web")
+# @ app.action("wants_video")
+# @ app.action("wants_quote")
 # Start your app
 if __name__ == "__main__":
     app.start(port=int(os.environ.get("PORT", 3000)))
