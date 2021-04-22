@@ -87,23 +87,9 @@ def default_message(message, say):
         }
     )
 
-<<<<<<< HEAD
-
-@app.message("stress")
-def stress_message(message, say):
-    say(
-        "What up"
-    )
-
-# @app.message("!distract web")
-# @app.message("!distract quote")
-
-
-=======
 """
 This function returns a joke when requested
 """
->>>>>>> e0d3ab0c473fa2fc703a6bff95e4c3e1a3a1fa7e
 @ app.action("wants_joke")
 def joke_requested(body, ack, say):
     # Acknowledge the action
