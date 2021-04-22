@@ -4,8 +4,11 @@ Authors: Will Escamilla, Zack Edwards, Grace Miguel, Viviane Farnung
 This is the main code for our slack bot
 """
 import os
+import random
+import data
 from slack_bolt import App
 from slack_bolt.oauth.internals import get_or_create_default_installation_store
+
 
 #what is ngrok.exe???
 
@@ -176,7 +179,7 @@ def quote_requested(body, ack, say):
 
 @ app.action("wants_web")
 def web_requested(body, ack, say): 
-    reply = f"Okay<@{body['user']['id']}>, here's your website: https://asoftmurmur.com/"
+    reply = f"Okay<@{body['user']['id']}>, here's your website: {data.websites[random.randint(0,len(data.websites))]}" #this returns a random index from the array in data.py
     ack()
     say(
         {
