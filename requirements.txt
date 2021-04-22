@@ -1,2 +1,4 @@
+#these are installations that we need
 slackclient==1.3.0
 requests
+slack-bolt

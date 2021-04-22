@@ -1,7 +1,10 @@
 import os
 from slack_bolt import App
 
+#what is ngrok.exe???
+
 # Initializes your app with your bot token and signing secret
+#what is a signing secret?
 app = App(
     token=os.environ.get("SLACK_BOT_TOKEN"),
     signing_secret=os.environ.get("SLACK_SIGNING_SECRET")
