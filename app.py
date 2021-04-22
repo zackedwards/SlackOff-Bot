@@ -174,7 +174,21 @@ def quote_requested(body, ack, say):
     )
 
 
-# @ app.action("wants_web")
+@ app.action("wants_web")
+def web_requested(body, ack, say): 
+    reply = f"Okay<@{body['user']['id']}>, here's your website: https://asoftmurmur.com/"
+    ack()
+    say(
+        {
+            "attachments": [
+                {
+                    "color": "#f2c744",
+                    "text": reply
+                }
+            ]
+        }
+    )
+
 # @ app.action("wants_video")
 #This is the quote response
 
