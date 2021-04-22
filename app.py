@@ -5,6 +5,7 @@ This is the main code for our slack bot
 """
 import os
 from slack_bolt import App
+from slack_bolt.oauth.internals import get_or_create_default_installation_store
 
 # Initializes your app with your bot token and signing secret
 app = App(
@@ -106,6 +107,9 @@ def joke_requested(body, ack, say):
     )
 
 
+# @ app.action("wants_web")
+# @ app.action("wants_video")
+# @ app.action("wants_quote")
 # Start your app
 if __name__ == "__main__":
     app.start(port=int(os.environ.get("PORT", 3000)))
