@@ -158,10 +158,26 @@ def joke_requested(body, ack, say):
         }
     )
 
+@ app.action("wants_quote")
+def quote_requested(body, ack, say):
+    reply=f"Okay <@{body['user']['id']}>, here's your quote: *'It's not whether you get knocked down, it's whether you get up.' -Vince Lombardi"
+    ack()
+    say(
+        {
+            "attachments": [
+                {
+                    "color": "#f2c744",
+                    "text": reply
+                }
+            ]
+        }
+    )
+
 
 # @ app.action("wants_web")
 # @ app.action("wants_video")
-# @ app.action("wants_quote")
+#This is the quote response
+
 # Start your app
 if __name__ == "__main__":
     app.start(port=int(os.environ.get("PORT", 3000)))
