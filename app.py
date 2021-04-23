@@ -6,6 +6,7 @@ This is the main code for our slack bot
 import os
 from slack_bolt import App
 from slack_bolt.oauth.internals import get_or_create_default_installation_store
+import requests
 
 # Initializes your app with your bot token and signing secret
 app = App(
