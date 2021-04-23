@@ -4,10 +4,16 @@ Authors: Will Escamilla, Zack Edwards, Grace Miguel, Viviane Farnung
 This is the main code for our slack bot
 """
 import os
+import random
+import data
 from slack_bolt import App
 from slack_bolt.oauth.internals import get_or_create_default_installation_store
 
+
+#what is ngrok.exe???
+
 # Initializes your app with your bot token and signing secret
+#what is a signing secret?
 app = App(
     token=os.environ.get("SLACK_BOT_TOKEN"),
     signing_secret=os.environ.get("SLACK_SIGNING_SECRET")
@@ -87,9 +93,58 @@ def default_message(message, say):
         }
     )
 
-"""
-This function returns a joke when requested
-"""
+
+@app.message("stress")
+def stress_message(message, say):
+    say(
+       {
+	"blocks": [
+		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "Time for a Break"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": f"Hi <@{message['user']}> :wave:"
+			}
+		},
+		{
+			"type": "context",
+			"elements": [
+				{
+					"type": "plain_text",
+					"text": "You seem to be a tad stressed. Stretch your legs and go for a walk!",
+					
+				}
+			]
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "You seem a tad stressed. You're working so hard, it's time you take a break. May I suggest one of the following:"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "• Go for a walk \n • Meditate \n • Talk to a friend"
+			}
+		}
+	]
+}
+    )
+
+# @app.message("!distract web")
+# @app.message("!distract quote")
+
+
 @ app.action("wants_joke")
 def joke_requested(body, ack, say):
     # Acknowledge the action
@@ -106,8 +161,37 @@ def joke_requested(body, ack, say):
         }
     )
 
+@ app.action("wants_quote")
+def quote_requested(body, ack, say):
+    reply=f"Okay <@{body['user']['id']}>, here's your quote: *'It's not whether you get knocked down, it's whether you get up.' -Vince Lombardi"
+    ack()
+    say(
+        {
+            "attachments": [
+                {
+                    "color": "#f2c744",
+                    "text": reply
+                }
+            ]
+        }
+    )
 
-# @ app.action("wants_web")
+
+@ app.action("wants_web")
+def web_requested(body, ack, say): 
+    reply = f"Okay<@{body['user']['id']}>, here's your website: {data.websites[random.randint(0,len(data.websites))]}" #this returns a random index from the array in data.py
+    ack()
+    say(
+        {
+            "attachments": [
+                {
+                    "color": "#f2c744",
+                    "text": reply
+                }
+            ]
+        }
+    )
+
 # @ app.action("wants_video")
 
 @ app.action("wants_quote")
