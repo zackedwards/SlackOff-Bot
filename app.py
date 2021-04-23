@@ -148,7 +148,6 @@ def stress_message(message, say):
 # @app.message("!distract web")
 # @app.message("!distract quote")
 
-
 @ app.action("wants_joke")
 def joke_requested(body, ack, say):
     # Acknowledge the action
@@ -157,37 +156,6 @@ def joke_requested(body, ack, say):
         if i['type'] == 'joke':
             answer = i['content']
     reply=f"*Okay <@{body['user']['id']}>, here's your joke:* " + answer
-    ack()
-    say(
-        {
-            "attachments": [
-                {
-                    "color": "#f2c744",
-                    "text": reply
-                }
-            ]
-        }
-    )
-
-@ app.action("wants_quote")
-def quote_requested(body, ack, say):
-    reply=f"Okay <@{body['user']['id']}>, here's your quote: *'It's not whether you get knocked down, it's whether you get up.' -Vince Lombardi"
-    ack()
-    say(
-        {
-            "attachments": [
-                {
-                    "color": "#f2c744",
-                    "text": reply
-                }
-            ]
-        }
-    )
-
-
-@ app.action("wants_web")
-def web_requested(body, ack, say): 
-    reply = f"Okay<@{body['user']['id']}>, here's your website: {data.websites[random.randint(0,len(data.websites))]}" #this returns a random index from the array in data.py
     ack()
     say(
         {
