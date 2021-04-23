@@ -179,7 +179,7 @@ def quote_requested(body, ack, say):
 
 @ app.action("wants_web")
 def web_requested(body, ack, say): 
-    reply = f"Okay<@{body['user']['id']}>, here's your website: {data.websites[random.randint(0,len(data.websites))]}" #this returns a random index from the array in data.py
+    reply = f"Okay<@{body['user']['id']}>, here's your website: {data.websites[random.randint(0,len(data.websites))]}" #this returns a random
     ack()
     say(
         {
