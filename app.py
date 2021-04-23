@@ -8,6 +8,10 @@ import random
 import data
 from slack_bolt import App
 from slack_bolt.oauth.internals import get_or_create_default_installation_store
+import requests
+
+#our database
+link = 'https://sheetdb.io/api/v1/7a4208wp8ee6d'
 
 
 #what is ngrok.exe???
@@ -148,7 +152,11 @@ def stress_message(message, say):
 @ app.action("wants_joke")
 def joke_requested(body, ack, say):
     # Acknowledge the action
-    reply=f"*Okay <@{body['user']['id']}>, here's your joke:* _poopie poopie poop head_"
+    r = requests.get(link).json()
+    for i in r:
+        if i['type'] == 'joke':
+            answer = i['content']
+    reply=f"*Okay <@{body['user']['id']}>, here's your joke:* " + answer
     ack()
     say(
         {
@@ -192,12 +200,55 @@ def web_requested(body, ack, say):
         }
     )
 
-# @ app.action("wants_video")
+
+@ app.action("wants_web")
+def web_requested(body, ack, say):
+    r = requests.get(link).json()
+    for i in r:
+        if i['type'] == 'link':
+            answer = i['content']
+    #acknowledge the answer
+    reply=f"*Okay <@{body['user']['id']}>, here's your link:* " + answer
+    ack()
+    say(
+        {
+            "attachments":[
+                {
+                    "color": "#f2c744",
+                    "text": reply
+                }
+            ]
+        }
+    )
+@ app.action("wants_video")
+def video_requested(body, ack, say):
+    r = requests.get(link).json()
+    for i in r:
+        if i['type'] == 'video':
+            answer = i['content']
+    #acknowledge the answer
+    reply=f"*Okay <@{body['user']['id']}>, here's your video:* " + answer
+    ack()
+    say(
+        {
+            "attachments":[
+                {
+                    "color": "#f2c744",
+                    "text": reply
+                }
+            ]
+        }
+    )
+
 
 @ app.action("wants_quote")
 def quote_requested(body, ack, say):
+    r = requests.get(link).json()
+    for i in r:
+        if i['type'] == 'quote':
+            answer = i['content']
     #acknowledge the answer
-    reply=f"*Okay <@{body['user']['id']}>, here's your quote:* 'You miss 0% of the shots you don't take' - Wayne Getskeed"
+    reply=f"*Okay <@{body['user']['id']}>, here's your quote:* " + answer
     ack()
     say(
         {
