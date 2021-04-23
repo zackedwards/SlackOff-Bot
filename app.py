@@ -145,6 +145,9 @@ def stress_message(message, say):
 }
     )
 
+# @app.message("!distract web")
+# @app.message("!distract quote")
+
 @ app.action("wants_joke")
 def joke_requested(body, ack, say):
     # Acknowledge the action
