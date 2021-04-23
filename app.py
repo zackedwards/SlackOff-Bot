@@ -109,7 +109,23 @@ def joke_requested(body, ack, say):
 
 # @ app.action("wants_web")
 # @ app.action("wants_video")
-# @ app.action("wants_quote")
+
+@ app.action("wants_quote")
+def quote_requested(body, ack, say):
+    #acknowledge the answer
+    reply=f"*Okay <@{body['user']['id']}>, here's your quote:* 'You miss 0% of the shots you don't take' - Wayne Getskeed"
+    ack()
+    say(
+        {
+            "attachments":[
+                {
+                    "color": "#f2c744",
+                    "text": reply
+                }
+            ]
+        }
+    )
+
 # Start your app
 if __name__ == "__main__":
     app.start(port=int(os.environ.get("PORT", 3000)))
