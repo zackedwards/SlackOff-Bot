@@ -115,8 +115,44 @@ def joke_requested(body, ack, say):
     )
 
 
-# @ app.action("wants_web")
-# @ app.action("wants_video")
+@ app.action("wants_web")
+def web_requested(body, ack, say):
+    r = requests.get(link).json()
+    for i in r:
+        if i['type'] == 'link':
+            answer = i['content']
+    #acknowledge the answer
+    reply=f"*Okay <@{body['user']['id']}>, here's your link:* " + answer
+    ack()
+    say(
+        {
+            "attachments":[
+                {
+                    "color": "#f2c744",
+                    "text": reply
+                }
+            ]
+        }
+    )
+@ app.action("wants_video")
+def video_requested(body, ack, say):
+    r = requests.get(link).json()
+    for i in r:
+        if i['type'] == 'video':
+            answer = i['content']
+    #acknowledge the answer
+    reply=f"*Okay <@{body['user']['id']}>, here's your video:* " + answer
+    ack()
+    say(
+        {
+            "attachments":[
+                {
+                    "color": "#f2c744",
+                    "text": reply
+                }
+            ]
+        }
+    )
 
 @ app.action("wants_quote")
 def quote_requested(body, ack, say):
