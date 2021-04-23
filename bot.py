@@ -5,7 +5,7 @@ import slack
 from slackclient import SlackClient
 
 # instantiate Slack client
-slack_client = SlackClient(os.environ.get('SLACKBOTTOKEN'))
+slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
 # starterbot's user ID in Slack: value is assigned after the bot starts up
 slackoff_bot_id = None
 RTM_READ_DELAY = 1 # 1 second delay between reading from RTM
@@ -69,3 +69,4 @@ if __name__ == "__main__":
     else:
         print("Connection failed. Exception traceback printed above.")
 
+3e163df87fa54159e758e9f5d4244e16
