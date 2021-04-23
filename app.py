@@ -8,6 +8,9 @@ from slack_bolt import App
 from slack_bolt.oauth.internals import get_or_create_default_installation_store
 import requests
 
+#our database
+link = 'https://sheetdb.io/api/v1/7a4208wp8ee6d'
+
 # Initializes your app with your bot token and signing secret
 app = App(
     token=os.environ.get("SLACK_BOT_TOKEN"),
@@ -94,7 +97,11 @@ This function returns a joke when requested
 @ app.action("wants_joke")
 def joke_requested(body, ack, say):
     # Acknowledge the action
-    reply=f"*Okay <@{body['user']['id']}>, here's your joke:* _poopie poopie poop head_"
+    r = requests.get(link).json()
+    for i in r:
+        if i['type'] == 'joke':
+            answer = i['content']
+    reply=f"*Okay <@{body['user']['id']}>, here's your joke:* " + answer
     ack()
     say(
         {
@@ -113,8 +120,12 @@ def joke_requested(body, ack, say):
 
 @ app.action("wants_quote")
 def quote_requested(body, ack, say):
+    r = requests.get(link).json()
+    for i in r:
+        if i['type'] == 'quote':
+            answer = i['content']
     #acknowledge the answer
-    reply=f"*Okay <@{body['user']['id']}>, here's your quote:* 'You miss 0% of the shots you don't take' - Wayne Getskeed"
+    reply=f"*Okay <@{body['user']['id']}>, here's your quote:* " + answer
     ack()
     say(
         {
