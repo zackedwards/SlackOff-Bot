@@ -6,10 +6,15 @@ This is the main code for our slack bot
 import os
 import random
 import data
+import time
 from slack_bolt import App
 from slack_bolt.oauth.internals import get_or_create_default_installation_store
+from slack_sdk import WebClient
+from slack_sdk.errors import SlackApiError
 import requests
 
+users = data.users_database
+userClass = data.user
 #our database
 link = 'https://sheetdb.io/api/v1/7a4208wp8ee6d'
 
@@ -145,8 +150,72 @@ def stress_message(message, say):
 }
     )
 
-# @app.message("!distract web")
-# @app.message("!distract quote")
+@app.message("!distract web")
+def web_message(message, say):
+    r = requests.get(link).json()
+    for i in r:
+        if i['type'] == 'link':
+            answer = i['content']
+    say(
+        {
+        "attachments": [
+            {
+                "color": "#572dd6",
+                "blocks": [
+		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "Relax on the web",
+				
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": f"Hey <@{message['user']}>! You've been working so hard, here is a website to get your mind off work: {answer} "
+			}
+		}
+	]
+            }
+        ]
+        }
+    )
+
+
+@app.message("!distract quote")
+def quote_message(message, say):
+    r = requests.get(link).json()
+    for i in r:
+        if i['type'] == 'quote':
+            answer = i['content']
+    say(
+        {
+            "attachments": [
+                {
+                    "color": "#f09d30",
+                    "blocks": [
+		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "Words of Wisdom",
+				
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": f"Hey <@{message['user']}>!  :herb: You've been working so hard, here is a quote to ease your mind: {answer}"
+			}
+		}
+	]
+                }
+            ]
+        }
+    )
 
 @ app.action("wants_joke")
 def joke_requested(body, ack, say):
@@ -228,6 +297,60 @@ def quote_requested(body, ack, say):
             ]
         }
     )
+'''this is to send a scheduled message'''
+
+@app.message("wake me up")
+def say_hello(client, message):
+    # Unix Epoch time for September 30, 2020 11:59:59 PM
+    when_september_ends = time.time()+2
+    print(when_september_ends)
+    channel_id = message["channel"]
+    client.chat_scheduleMessage(
+        channel=channel_id,
+        post_at=when_september_ends,
+        text=" this is a scheduled message for 2 seconds after I send 'wake me up'"
+    )
+    when_september_ends = time.time()
+
+# #counts numbers of messages per user 
+# @app.message()
+# def message_counter(message, say):
+#     for x in users:
+#         if message["user"] in x:
+#             current_user = message["user"]
+#             print(current_user)
+#             current_user.messageCount+1
+#             break
+#         if [x == len(users)-1] and message["user"] not in users:
+#             user = userClass(message["user"], 1)
+#             current_user = user
+
+#     if(current_user.messageCount >= 5):
+#         say(
+#             {
+#                 "blocks" : [
+#                     {
+#                         "type": "header",
+#                         "text": {
+#                             "type": "plain_text",
+#                             "text": "Stop talking so much!"
+#                         }
+
+#                     },
+#                     {
+#                         "type": "section",
+#                         "text": {
+#                             "type": "mrkdown",
+#                             "text": f" Hey @<{message['user']}, your message count is {current_user.messageCount}. This is too much, you gotta chill out."
+#                         }
+#                     }
+#                 ]
+                
+#             }
+
+#         )
+            
+        
 
 # Start your app
 if __name__ == "__main__":
