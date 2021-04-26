@@ -119,7 +119,7 @@ def stress_message(message, say):
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": f"Hi <@{message['user']}> :wave:"
+				"text": f"*Hi <@{message['user']}>* :wave:"
 			}
 		},
 		{
@@ -178,7 +178,7 @@ def web_message(message, say):
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": f"Hey <@{message['user']}>! You've been working so hard, here is a website to get your mind off work: {answer} "
+				"text": f"*Hey <@{message['user']}>!* You've been working so hard, here is a website to get your mind off work: {answer} "
 			}
 		}
 	]
@@ -189,13 +189,36 @@ def web_message(message, say):
 
 @app.message("!distract joke")
 def joke_message(message, say):
-       r = requests.get(link).json()
-    for i in r:
+    r = requests.get(link).json()
+    number = random.randint(0,len(r)-10)
+    new_link=link+'?limit=10&offset='+str(number)
+    rows = requests.get(link).json()
+    for i in rows:
         if i['type'] == 'joke':
             answer = i['content']
+            break
     say(
         {
             "attachments": [
+                {
+                    "color": "#09610c",
+                    "blocks": [
+		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "Joke's on you!"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": f"*Hey <@{message['user']}!* Here's the joke you requested: {answer}"
+			}
+		}
+	]
+                }
                 
             ]
         }
@@ -228,7 +251,7 @@ def quote_message(message, say):
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": f"Hey <@{message['user']}>!  :herb: You've been working so hard, here is a quote to ease your mind: {answer}"
+				"text": f"*Hey <@{message['user']}>!*  :herb: You've been working so hard, here is a quote to ease your mind: {answer}"
 			}
 		}
 	]
