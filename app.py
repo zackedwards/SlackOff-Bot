@@ -153,7 +153,10 @@ def stress_message(message, say):
 @app.message("!distract web")
 def web_message(message, say):
     r = requests.get(link).json()
-    for i in r:
+    number = random.randint(0,len(r)-10)
+    new_link=link+'?limit=10&offset='+str(number)
+    rows = requests.get(link).json()
+    for i in rows:
         if i['type'] == 'link':
             answer = i['content']
             break
@@ -188,7 +191,10 @@ def web_message(message, say):
 @app.message("!distract quote")
 def quote_message(message, say):
     r = requests.get(link).json()
-    for i in r:
+    number = random.randint(0,len(r)-10)
+    new_link=link+'?limit=10&offset='+str(number)
+    rows = requests.get(link).json()
+    for i in rows:
         if i['type'] == 'quote':
             answer = i['content']
             break
