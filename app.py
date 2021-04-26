@@ -156,6 +156,7 @@ def web_message(message, say):
     for i in r:
         if i['type'] == 'link':
             answer = i['content']
+            break
     say(
         {
         "attachments": [
@@ -190,6 +191,7 @@ def quote_message(message, say):
     for i in r:
         if i['type'] == 'quote':
             answer = i['content']
+            break
     say(
         {
             "attachments": [
@@ -221,9 +223,13 @@ def quote_message(message, say):
 def joke_requested(body, ack, say):
     # Acknowledge the action
     r = requests.get(link).json()
-    for i in r:
+    number = random.randint(0,len(r)-10)
+    new_link=link+'?limit=10&offset='+str(number)
+    rows = requests.get(link).json()
+    for i in rows:
         if i['type'] == 'joke':
             answer = i['content']
+            break
     reply=f"*Okay <@{body['user']['id']}>, here's your joke:* " + answer
     ack()
     say(
@@ -241,9 +247,13 @@ def joke_requested(body, ack, say):
 @ app.action("wants_web")
 def web_requested(body, ack, say):
     r = requests.get(link).json()
-    for i in r:
+    number = random.randint(0,len(r)-10)
+    new_link=link+'?limit=10&offset='+str(number)
+    rows = requests.get(link).json()
+    for i in rows:
         if i['type'] == 'link':
             answer = i['content']
+            break
     #acknowledge the answer
     reply=f"*Okay <@{body['user']['id']}>, here's your link:* " + answer
     ack()
@@ -260,9 +270,13 @@ def web_requested(body, ack, say):
 @ app.action("wants_video")
 def video_requested(body, ack, say):
     r = requests.get(link).json()
-    for i in r:
+    number = random.randint(0,len(r)-10)
+    new_link=link+'?limit=10&offset='+str(number)
+    rows = requests.get(link).json()
+    for i in rows:
         if i['type'] == 'video':
             answer = i['content']
+            break
     #acknowledge the answer
     reply=f"*Okay <@{body['user']['id']}>, here's your video:* " + answer
     ack()
@@ -281,9 +295,13 @@ def video_requested(body, ack, say):
 @ app.action("wants_quote")
 def quote_requested(body, ack, say):
     r = requests.get(link).json()
-    for i in r:
+    number = random.randint(0,len(r)-10)
+    new_link=link+'?limit=10&offset='+str(number)
+    rows = requests.get(link).json()
+    for i in rows:
         if i['type'] == 'quote':
             answer = i['content']
+            break
     #acknowledge the answer
     reply=f"*Okay <@{body['user']['id']}>, here's your quote:* " + answer
     ack()
