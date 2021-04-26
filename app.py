@@ -297,6 +297,43 @@ def video_message(message, say):
         }
     )
 
+@app.message("!distract exercise")
+def exercise_message(message, say):
+    r = requests.get(link).json()
+    number = random.randint(0,len(r)-10)
+    new_link=link+'?limit=10&offset='+str(number)
+    rows = requests.get(new_link).json()
+    for i in rows:
+        if i['type'] == 'exercise':
+            answer = i['content']
+            break
+    say(
+        {
+            "attachments": [
+                {
+                    "color": "#4B0082",
+                    "blocks": [
+		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "Get Active",
+				
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": f"*Hey <@{message['user']}>!*  :herb: You've been working so hard, here is a exercise to keep the blood flowing: {answer}"
+			}
+		}
+	]
+                }
+            ]
+        }
+    )
+
 @ app.action("wants_joke")
 def joke_requested(body, ack, say):
     # Acknowledge the action
