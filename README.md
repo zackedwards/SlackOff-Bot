@@ -32,6 +32,3 @@ https://medium.com/alex-attia-blog/build-a-first-simple-slack-bot-with-python-53
 * This one is probably closer to what we'll be doing but it's more complex so I wanted to start small
 https://hackernoon.com/a-guide-to-building-a-multi-featured-slackbot-with-python-73ea5394acc 
 
-# RTM not working
-So the RTM isn't working because that is for classic Slack apps which are outdated: https://api.slack.com/methods/rtm.connect
-We should probably use the Event API since that is updated: https://api.slack.com/start/planning/choosing 
