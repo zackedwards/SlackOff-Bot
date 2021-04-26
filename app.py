@@ -214,7 +214,7 @@ def joke_message(message, say):
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": f"*Hey <@{message['user']}!* Here's the joke you requested: {answer}"
+				"text": f"*Hey <@{message['user']}>!* Here's the joke you requested: {answer}"
 			}
 		}
 	]
