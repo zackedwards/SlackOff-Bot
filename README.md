@@ -9,7 +9,7 @@ Team member: GitHub ID
 
 [Project Information](./DESIGN.md)
 
-[User Stories](./userstories.md)
+[User Stories](./UserStories.md)
 
 # Original brainstorming session:
 
