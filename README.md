@@ -9,6 +9,8 @@ Team member: GitHub ID
 
 [Project Information](./DESIGN.md)
 
+[User Stories](./userstories.md)
+
 # Original brainstorming session:
 
 # slack_bot
