@@ -30,7 +30,7 @@ Story points: 8
 
 Story Points: 4
 
-Author:
+Author: Grace Miguel
 
 **Iteration 2**
  
