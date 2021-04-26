@@ -225,6 +225,43 @@ def quote_message(message, say):
         }
     )
 
+@app.message("!distract video")
+def video_message(message, say):
+    r = requests.get(link).json()
+    number = random.randint(0,len(r)-10)
+    new_link = link+'?limit=10&offset='+str(number)
+    rows = requests.get(link).json()
+    for i in rows:
+        if i['type'] == 'video':
+            answer = i['content']
+            break
+    say(
+        {
+            "attachments": [
+                {
+                    "color": "#0000FF",
+                    "blocks": [
+		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "Grab Some Popcorn",
+				
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": f"Hey <@{message['user']}>!  :herb: You've been working so hard, here is a video to cool your eyeballs: {answer}"
+			}
+		}
+	]
+                }
+            ]
+        }
+    )
+
 @ app.action("wants_joke")
 def joke_requested(body, ack, say):
     # Acknowledge the action
