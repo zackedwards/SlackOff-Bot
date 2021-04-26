@@ -8,7 +8,7 @@ Use Case: The User Asks for a Distraction
 
 Story Points: 3
 
-Author: William Escamilla
+Author: Whole Development Team
 
 [ ] US2: As a part of a team which uses slack, I want to be able to send my teammates a distraction near the end of the day if I think they have been working hard and deserve a break, so that they may increase their overall productivity and boost morale. 
 
@@ -20,7 +20,7 @@ Author:
 
 Story points: 4
 
-Author:
+Author: William Escamilla
 
 [ ] US4: As a hard working user of slack, if I or a member of my team requests too many distractions I want the bot to tell them to focus before they receive a distraction so that we stay on task and don’t abuse the distractions.
 
