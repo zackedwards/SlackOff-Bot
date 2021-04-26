@@ -8,7 +8,7 @@ Use Case: The User Asks for a Distraction
 
 Story Points: 3
 
-Author:
+Author: William Escamilla
 
 [ ] US2: As a part of a team which uses slack, I want to be able to send my teammates a distraction near the end of the day if I think they have been working hard and deserve a break, so that they may increase their overall productivity and boost morale. 
 
