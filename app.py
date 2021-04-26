@@ -19,7 +19,7 @@ userClass = data.user
 link = 'https://sheetdb.io/api/v1/7a4208wp8ee6d'
 
 
-#what is ngrok.exe???
+
 
 # Initializes your app with your bot token and signing secret
 #what is a signing secret?
@@ -119,7 +119,7 @@ def stress_message(message, say):
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": f"Hi <@{message['user']}> :wave:"
+				"text": f"*Hi <@{message['user']}>* :wave:"
 			}
 		},
 		{
@@ -178,7 +178,7 @@ def web_message(message, say):
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": f"Hey <@{message['user']}>! You've been working so hard, here is a website to get your mind off work: {answer} "
+				"text": f"*Hey <@{message['user']}>!* You've been working so hard, here is a website to get your mind off work: {answer} "
 			}
 		}
 	]
@@ -187,7 +187,42 @@ def web_message(message, say):
         }
     )
 
-
+@app.message("!distract joke")
+def joke_message(message, say):
+    r = requests.get(link).json()
+    number = random.randint(0,len(r)-10)
+    new_link=link+'?limit=10&offset='+str(number)
+    rows = requests.get(link).json()
+    for i in rows:
+        if i['type'] == 'joke':
+            answer = i['content']
+            break
+    say(
+        {
+            "attachments": [
+                {
+                    "color": "#09610c",
+                    "blocks": [
+		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "Joke's on you!"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": f"*Hey <@{message['user']}!* Here's the joke you requested: {answer}"
+			}
+		}
+	]
+                }
+                
+            ]
+        }
+    )
 @app.message("!distract quote")
 def quote_message(message, say):
     r = requests.get(link).json()
@@ -216,7 +251,7 @@ def quote_message(message, say):
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": f"Hey <@{message['user']}>!  :herb: You've been working so hard, here is a quote to ease your mind: {answer}"
+				"text": f"*Hey <@{message['user']}>!*  :herb: You've been working so hard, here is a quote to ease your mind: {answer}"
 			}
 		}
 	]
@@ -376,6 +411,21 @@ def say_hello(client, message):
 # #counts numbers of messages per user 
 # @app.message()
 # def message_counter(message, say):
+#     conversations_history = []
+#     channel_id = "C01SKLL61DZ"
+#     try:
+#     # Call the conversations.history method using the WebClient
+#     # conversations.history returns the first 100 messages by default
+#     # These results are paginated, see: https://api.slack.com/methods/conversations.history$pagination
+#     result = client.conversations_history(channel=channel_id)
+
+#     conversation_history = result["messages"]
+
+#     # Print results
+#     logger.info("{} messages found in {}".format(len(conversation_history), id))
+
+# except SlackApiError as e:
+#     logger.error("Error creating conversation: {}".format(e))
 #     for x in users:
 #         if message["user"] in x:
 #             current_user = message["user"]
