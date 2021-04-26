@@ -16,9 +16,9 @@ Author: Viviane
 Story points: 4
 Author: William Escamilla
 
-* [ ] US4: As a hard working user of slack, if I or a member of my team requests too many distractions I want the bot to tell them to focus before they receive a distraction so that we stay on task and don’t abuse the distractions.
+* [ ] US4: As a user I want a large database of distractions to pull from so they don't become repetititve.
 Story points: 8
-Author: Zack
+Author: Zack Edwards
 
 * [x] US5: As a hard worker, I want to directly call the bot to give me a specific distraction(website, quote, video, joke).
 Story Points: 4
@@ -28,7 +28,7 @@ Author: Grace Miguel
  
 Use Case: The user has exceeded the message rate threshold
 
-* [ ] US6: As a user I want to retrieve randomized content from the database so that I am optimally distracted
+* [x] US6: As a user I want to retrieve randomized content from the database so that I am optimally distracted.
 Story points: 5
 Author: Grace
 
@@ -40,6 +40,6 @@ Author: Grace
 Story points: 3
 Author: Viviane
 
-* [ ] US5: As a user I want to retrieve randomized content from the database so that I am optimally distracted
+* [x] US5: As a user I want to retrieve randomized content from the database so that I am optimally distracted.
 Story points: 5
 Author: Zack Edwards
