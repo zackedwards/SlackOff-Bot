@@ -19,7 +19,7 @@ userClass = data.user
 link = 'https://sheetdb.io/api/v1/7a4208wp8ee6d'
 
 
-#what is ngrok.exe???
+
 
 # Initializes your app with your bot token and signing secret
 #what is a signing secret?
@@ -183,7 +183,19 @@ def web_message(message, say):
         }
     )
 
-
+@app.message("!distract joke")
+def joke_message(message, say):
+       r = requests.get(link).json()
+    for i in r:
+        if i['type'] == 'joke':
+            answer = i['content']
+    say(
+        {
+            "attachments": [
+                
+            ]
+        }
+    )
 @app.message("!distract quote")
 def quote_message(message, say):
     r = requests.get(link).json()
@@ -315,6 +327,21 @@ def say_hello(client, message):
 # #counts numbers of messages per user 
 # @app.message()
 # def message_counter(message, say):
+#     conversations_history = []
+#     channel_id = "C01SKLL61DZ"
+#     try:
+#     # Call the conversations.history method using the WebClient
+#     # conversations.history returns the first 100 messages by default
+#     # These results are paginated, see: https://api.slack.com/methods/conversations.history$pagination
+#     result = client.conversations_history(channel=channel_id)
+
+#     conversation_history = result["messages"]
+
+#     # Print results
+#     logger.info("{} messages found in {}".format(len(conversation_history), id))
+
+# except SlackApiError as e:
+#     logger.error("Error creating conversation: {}".format(e))
 #     for x in users:
 #         if message["user"] in x:
 #             current_user = message["user"]
