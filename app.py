@@ -192,7 +192,7 @@ def joke_message(message, say):
     r = requests.get(link).json()
     number = random.randint(0,len(r)-10)
     new_link=link+'?limit=10&offset='+str(number)
-    rows = requests.get(link).json()
+    rows = requests.get(new_link).json()
     for i in rows:
         if i['type'] == 'joke':
             answer = i['content']
@@ -265,7 +265,7 @@ def video_message(message, say):
     r = requests.get(link).json()
     number = random.randint(0,len(r)-10)
     new_link = link+'?limit=10&offset='+str(number)
-    rows = requests.get(link).json()
+    rows = requests.get(new_link).json()
     for i in rows:
         if i['type'] == 'video':
             answer = i['content']
