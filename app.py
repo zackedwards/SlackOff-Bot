@@ -6,12 +6,15 @@ This is the main code for our slack bot
 import os
 import random
 import data
+import datetime
 import time
-from slack_bolt import App
+from slack_bolt import App, logger
 from slack_bolt.oauth.internals import get_or_create_default_installation_store
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 import requests
+
+
 
 users = data.users_database
 userClass = data.user
@@ -444,6 +447,23 @@ def say_hello(client, message):
         text=" this is a scheduled message for 2 seconds after I send 'wake me up'"
     )
     when_september_ends = time.time()
+
+@app.message("!set timer")
+def waited_distraction(client, message):
+    today = datetime.datetime.now()
+    timestamp = (today - datetime.datetime(1970, 1, 1)).total_seconds()
+    timestamp+=14500            #this is one hour in the future
+    print(timestamp)
+    channel_id = message["channel"]
+    result = app.client.chat_scheduleMessage( 
+        channel = channel_id, 
+        text = "It's time to take a break", 
+        post_at = timestamp
+
+        )
+    
+
+
 
 # #counts numbers of messages per user 
 # @app.message()
