@@ -16,8 +16,8 @@ Companies and teams who have communication tools that can be used virtually face
 3. !distract web: this call gives a user a randomizes website from our database. ![reportpic](web.png) 
 4. !distract video: this call gives a user a randomized video from our database. ![reportpic](video.png)
 5. !distract quote: this call gives a user a randomized quote from our database. ![reportpic](quote.png)
-6. !distract exercise: this call gives a user a randomized exercise task from our database.![reportpic](exercise.png) 
-7. !distract timer: this call sets a timer for 30 minutes and after those 30 minutes are up, the SlackOff Bot will return a message to take a break. ![reportpic](timer.png)
+6. !distract exercise: this call gives a user a randomized exercise task from our database.![reportpic](exercise .png) 
+7. !distract timer: this call sets a timer for 30 minutes and after those 30 minutes are up, the SlackOff Bot will return a message to take a break. ![reportpic](timer .png)
 * Indirect calls to the SlackOff Bot- the bot will listen to all messages for keywords and send appropriate messages for those keywords
 1. Keyword: stress, this call indicates that the user is stressed and therefore the bot will return a message telling the user to take a break.![reportpic](stress.png)
 
