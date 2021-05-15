@@ -11,7 +11,7 @@ Companies and teams who have communication tools that can be used virtually face
 
 # Primary Features
 * Direct calls to the SlackOff Bot- all of these calls except the timer references our Google Sheets API database. 
-1. !distract me: this call will give the user distraction options. These options are: joke, video, quote, and quote.
+1. !distract me: this call will give the user distraction options. These options are: joke, video, quote, and quote. ![reportpic](distractMe.png)
 2. !distract joke: this call gives a user a randomized joke from our database.   ![reportpic](joke.png)
 3. !distract web: this call gives a user a randomizes website from our database. ![reportpic](web.png) 
 4. !distract video: this call gives a user a randomized video from our database. ![reportpic](video.png)
